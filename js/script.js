@@ -1,9 +1,27 @@
 
 // 1 --- Il computer deve generare 16 numeri casuali tra 1 e 100.
 
+// FUNZIONI
+
+// crea un numero random tra due estremi inclusi
 function getRandom(min,max) {
   return Math.floor(Math.random()*(max - min +1))+ min;
 }
+
+// cerca un elemento in un array
+function inArray(array,elemento) {
+  var i =0;
+
+  while (i < array.length) {
+    if (array[i] == elemento) {
+      return true;
+    }
+    i ++;
+  }
+  return false;
+}
+
+// / FUNZIONI
 
 // creo un array e controllo se ci sono due numeri uguali
 var arrayComp = [];
@@ -13,7 +31,7 @@ do {
 
     // Push nell'array solo se
     // l'elemento non è contenuto nell'array
-    if (!arrayComp.includes(numeriComp)) {
+    if (!inArray(arrayComp,numeriComp)) {
         arrayComp.push(numeriComp);
     }
 
@@ -30,13 +48,13 @@ while (arrayUtente.length < 5 && bombaEsplosa == false ) {
   // altrimenti si continua chiedendo all’utente un altro numero.
   var numeroUtente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100"))
 
-  // 3 --- Se il numero è presente nella lista dei numeri generati,
+  // Se il numero è presente nella lista dei numeri generati,
   if (isNaN(numeroUtente) || numeroUtente < 1 || numeroUtente > 100) {
     alert("Attenzione al numero che stai inserendo");
   }
-  else if (arrayComp.includes(numeroUtente) == true) {
+  else if ( inArray(arrayComp,numeroUtente) == true ) {
     bombaEsplosa = true;
-  } else if (arrayUtente.includes(numeroUtente) == true){
+  } else if ( inArray(arrayUtente,numeroUtente) == true ){
     alert("Non fare il furbo!");
   } else {
     arrayUtente.push(numeroUtente);
