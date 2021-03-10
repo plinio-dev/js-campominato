@@ -1,4 +1,25 @@
 
+
+
+
+// 0 BONUS
+// All'inizio il software chiede all'utente il gradodi difficoltà
+// con difficoltà 0 => tra 1 e 100
+// con difficoltà 1 => tra 1 e 80
+// con difficoltà 2 => tra 1 e 50
+do {
+  var sceltaUtente = parseInt(prompt("Inserisci il livello: 0, 1, 2"))
+} while (sceltaUtente != 0 && sceltaUtente!= 1 && sceltaUtente != 2);
+
+var numMaxBombe;
+if (sceltaUtente == 0) {
+  numMaxBombe = 100;
+} else if (sceltaUtente = 1) {
+  numMaxBombe = 80;
+} else {
+  numMaxBombe = 50;
+}
+
 // 1 --- Il computer deve generare 16 numeri casuali tra 1 e 100.
 
 // FUNZIONI
@@ -27,7 +48,7 @@ function inArray(array,elemento) {
 var arrayComp = [];
 do {
     // genero un numero random con la funzione
-    var numeriComp = getRandom(1,100);
+    var numeriComp = getRandom(1,numMaxBombe);
 
     // Push nell'array solo se
     // l'elemento non è contenuto nell'array
@@ -42,14 +63,17 @@ console.log(arrayComp)
 
 // 2 --- In seguito deve chiedere all’utente (100 - 16) (lo chiedo per 5 volte) di inserire un numero alla volta
 var arrayUtente = [];
-bombaEsplosa = false;
+var bombaEsplosa = false;
+var possibilità = numMaxBombe - 16;
 
-while (arrayUtente.length < 5 && bombaEsplosa == false ) {
+
+
+while (arrayUtente.length < possibilità && bombaEsplosa == false ) {
   // altrimenti si continua chiedendo all’utente un altro numero.
   var numeroUtente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100"))
 
   // Se il numero è presente nella lista dei numeri generati,
-  if (isNaN(numeroUtente) || numeroUtente < 1 || numeroUtente > 100) {
+  if (isNaN(numeroUtente) || numeroUtente < 1 || numeroUtente > numMaxBombe) {
     alert("Attenzione al numero che stai inserendo");
   }
   else if ( inArray(arrayComp,numeroUtente) == true ) {
@@ -61,7 +85,8 @@ while (arrayUtente.length < 5 && bombaEsplosa == false ) {
   }
 }
 
-// stampo in console il punteggio finale
+// 4 --- La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
+// 5 --- Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
 if (bombaEsplosa == true) {
   // visualizzo tutti i numeri validi inseriti dall'utente
@@ -70,8 +95,3 @@ if (bombaEsplosa == true) {
 } else {
   console.log("Bravo hai vinto");
 }
-
-
-
-// 4 --- La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-// 5 --- Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
