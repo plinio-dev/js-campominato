@@ -22,32 +22,36 @@ do {
 console.log(arrayComp)
 
 
-// 2 --- In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 5.
+// 2 --- In seguito deve chiedere all’utente (100 - 16) (lo chiedo per 5 volte) di inserire un numero alla volta
 var arrayUtente = [];
-var i = 0 ;
-while (i < 5 ) {
+bombaEsplosa = false;
+
+while (arrayUtente.length < 5 && bombaEsplosa == false ) {
   // altrimenti si continua chiedendo all’utente un altro numero.
-  var numeroUtente = parseInt(prompt("Bravo! Inserisci ancora un numero compreso tra 1 e 5"))
+  var numeroUtente = parseInt(prompt("Inserisci un numero compreso tra 1 e 100"))
 
-  i ++
   // 3 --- Se il numero è presente nella lista dei numeri generati,
-  if (!arrayComp.includes(numeroUtente) && arrayUtente[i]!== numeroUtente ) {
-    arrayUtente.push(numeroUtente)
-
+  if (isNaN(numeroUtente) || numeroUtente < 1 || numeroUtente > 100) {
+    alert("Attenzione al numero che stai inserendo");
+  }
+  else if (arrayComp.includes(numeroUtente) == true) {
+    bombaEsplosa = true;
+  } else if (arrayUtente.includes(numeroUtente) == true){
+    alert("Non fare il furbo!");
   } else {
-     // la partita termina,
-    prompt("BOOM!!");
+    arrayUtente.push(numeroUtente);
   }
 }
 
-
-
-// visualizzo tutti i numeri validi inseriti dall'utente
-console.log(arrayUtente);
-
 // stampo in console il punteggio finale
-console.log("Il tuo punteggio è " + (((arrayComp.length) + (arrayUtente.length )) - arrayComp.length) + "su 5 tentativi") ;
 
+if (bombaEsplosa == true) {
+  // visualizzo tutti i numeri validi inseriti dall'utente
+  console.log("Hai preso la bomba ma hai inserito " + arrayUtente.length + " numeri validi");
+
+} else {
+  console.log("Bravo hai vinto");
+}
 
 
 
